@@ -112,7 +112,7 @@ select  BBB.管轄分區 as 轄管分局,
  from STUDENT.MAIN_TABLE AAA
  inner join STUDENT.FB_INFORMATION BBB on AAA.消防分隊 = BBB.管轄分區代碼
  where AAA.容納人數 > 1000;
---GROUP BY BBB.管轄分區,BBB.分局電話;
+--group by BBB.管轄分區,BBB.分局電話;
 
 --四之三
 select  distinct BBB.管轄分區 as 轄管分局,
@@ -145,24 +145,24 @@ select  BBB.管轄分區 as 轄管分局,
 
 --四之五
 
-SELECT  DDD.村里別 AS 村里別, 
+select  DDD.村里別 AS 村里別, 
         DDD.村里辦公室 AS 村里辦公室位置,
         AAA.設施地址 AS 避難設施地址,
         AAA.容納人數 AS 容人數量
         
-FROM 主表 AAA
-INNER JOIN 建築物類別 CCC ON AAA.建築物別 = CCC.編號
-INNER JOIN 辦公室資訊 DDD ON AAA.村里辦公室 = DDD."村里別代碼"
-WHERE CCC.編號 = 'B01' OR CCC.編號 = 'B02'
+ from STUDENT.MAIN_TABLE AAA
+ inner join STUDENT.BUILDING_CATEGORY CCC ON AAA.建築物別 = CCC.編號
+ inner join STUDENT.OFFICE DDD ON AAA.村里辦公室 = DDD."村里別代碼"
+ where CCC.編號 = 'B01' OR CCC.編號 = 'B02';
 --where ccc.編號 in('B01','B02') 
 
 --實作練習五
 --五之一
-UPDATE 主表
-SET 容納人數 = '5000'
-WHERE 設施地址 = '苗栗縣竹南鎮和平街79號'
+update 主表
+set 容納人數 = '5000'
+where 設施地址 = '苗栗縣竹南鎮和平街79號'
 
 
 --五之二
-DELETE FROM 主表
-WHERE 容納人數 < 1000
+delete from STUDENT.MAIN_TABLE
+where 容納人數 < 1000
