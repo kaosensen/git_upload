@@ -30,7 +30,6 @@ public class Sales extends Employee {
 
 	@Override
 	public void printInfo() {
-//		BigDecimal pay = new BigDecimal(payment);
 		super.printInfo();
 		System.out.println("業績獎金：" + bouns + "\n總計：" + payment);
 	}

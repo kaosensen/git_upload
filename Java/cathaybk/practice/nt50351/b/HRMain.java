@@ -17,9 +17,6 @@ public class HRMain {
 			employee.printInfo();
 		}
 
-		// 以下為第四題
-//		Collections.sort(employeeList,new Comparator<T>() {
-//		});
 		Collections.sort(employeeList, (o1, o2) -> {
 			if (o1 instanceof Supervisor && o2 instanceof Supervisor) {
 				return 0;
@@ -34,8 +31,8 @@ public class HRMain {
 
 		try (BufferedWriter bufferwrite = new BufferedWriter(
 				new FileWriter("C:\\Users\\Admin\\Desktop\\Output.csv"));) {
+			bufferwrite.write(new String(new byte[] { (byte) 0xef, (byte) 0xbb, (byte) 0xbf }));
 			for (Employee emp : employeeList) {
-				bufferwrite.write(new String(new byte[] { (byte) 0xef, (byte) 0xbb, (byte) 0xbf }));
 				if (emp instanceof Sales) {
 					Sales sel = (Sales) emp;
 					bufferwrite.write(emp.getName() + "," + sel.getPayment());
