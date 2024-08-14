@@ -2,35 +2,41 @@ package com.cathaybk.practice.nt50351.b;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
 
 
 public class Test2_1 {
-	public static List<Integer> lista = new ArrayList<>();
-	public static List<Integer> listb = new ArrayList<>();
+	public static List<Integer> listAll = new ArrayList<>();
+	public static List<Integer> listNumber = new ArrayList<>();
 
 	public static void main(String[] args) {
 		Random rand = new Random();
 		for (int i = 1; i < 50; i++) {
-			lista.add(i);
+			listAll.add(i);
 		}
-		while (listb.size() < 6) {
-			int b = rand.nextInt(lista.size());
-			listb.add(lista.get(b));
-			lista.remove(b);
+		while (listNumber.size() < 6) {
+			int b = rand.nextInt(listAll.size());
+			listNumber.add(listAll.get(b));
+			listAll.remove(b);
 		}
 		System.out.printf("排序前:");
-		forLoop();
-		Collections.sort(listb);
+		printList();
+		Collections.sort(listNumber,new Comparator<Integer>() {
+			public int compare(Integer o1,Integer o2) {
+				return o1.intValue()-o2.intValue();
+			}
+		
+		});
 		System.out.print("\n排序後:");
-		forLoop();
+		printList();
 	}
 
-	private static void forLoop() {
-		for (int i :listb) {
-			System.out.printf(i + " ");
+	private static void printList() {
+		for (int number :listNumber) {
+			System.out.printf(number + " ");
 		}
 	}
 }

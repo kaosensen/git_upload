@@ -1,7 +1,9 @@
 package com.cathaybk.practice.nt50351.b;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,20 +29,20 @@ public class HRMain {
 			} else {
 				return 0;
 			}
-		});
 
-		try (BufferedWriter bufferwrite = new BufferedWriter(
-				new FileWriter("C:\\Users\\Admin\\Desktop\\Output.csv"));) {
-			bufferwrite.write(new String(new byte[] { (byte) 0xef, (byte) 0xbb, (byte) 0xbf }));
+		});
+		try (Writer writer = new OutputStreamWriter(
+				new BufferedOutputStream(new FileOutputStream("C:\\Users\\Admin\\Desktop\\Output.csv")), "UTF-8")) {
+			writer.write('\uFEFF');
 			for (Employee emp : employeeList) {
 				if (emp instanceof Sales) {
 					Sales sel = (Sales) emp;
-					bufferwrite.write(emp.getName() + "," + sel.getPayment());
-					bufferwrite.newLine();
+					writer.write(emp.getName() + "," + sel.getPayment());
+					writer.write(System.lineSeparator());
 				} else {
 					Supervisor sup = (Supervisor) emp;
-					bufferwrite.write(emp.getName() + "," + sup.getPayment());
-					bufferwrite.newLine();
+					writer.write(emp.getName() + "," + sup.getPayment());
+					writer.write(System.lineSeparator());
 				}
 			}
 		} catch (Exception e) {

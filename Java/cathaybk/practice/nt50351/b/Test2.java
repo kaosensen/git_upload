@@ -18,15 +18,15 @@ public class Test2 {
 			}
 		}
 		System.out.print("排序前:");
-		forLoop();
+		printList();
 		Collections.sort(list);
 		System.out.print("\n排序後:");
-		forLoop();
+		printList();
 	}
 
-	private static void forLoop() {
-		for (int i = 0; i < 6; i++) {
-			System.out.printf(list.get(i) + " ");
+	private static void printList() {
+		for (int number :list) {
+			System.out.printf(number + " ");
 		}
 	}
 }
