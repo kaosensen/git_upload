@@ -51,7 +51,7 @@ function insertNewRecord(data) {
     cell6.innerHTML = Number(data.price);
     cell7 = newRow.insertCell(6);
     cell7.innerHTML = '<button onClick="onDelete(this)">刪除</button>';
-
+    addButton.addEventListener('click', updateIndices());
 }
 
 //新增，會呼叫新建table
@@ -118,5 +118,5 @@ emptyButton.addEventListener('click', function () {
     document.getElementById("minprice").value = "";
     document.getElementById("price").value = "";
     tbody.innerHTML = '';
-    updateIndices();
+    CarList = {};
 });
