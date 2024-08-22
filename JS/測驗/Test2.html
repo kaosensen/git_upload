@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test2</title>
+    <!-- <link type="text/css" rel="stylesheet" href="style.css">  -->
+</head>
+
+<body>
+    
+    <table border="1">
+        <tr align="center">
+            <td>製造商</td>
+            <td><input type='text' id='manufacturer'></td>
+            <td>類別</td>
+            <td><input type='text' id='type'></td>
+        </tr>
+        <tr align="center">
+            <td>底價</td>
+            <td><input type='text' id='minprice'></td>
+            <td>售價</td>
+            <td><input type='text' id='price'></td>
+        </tr>
+
+        <tr align="center">
+
+            <td colspan="4"><button type='button' id="addbtn">新增</button>　<button type='button'
+                    id='update'>修改</button>　<button type='button' id='empty'>清空</button></td>
+        </tr>
+    </table>
+    <br>
+    <table border="1">
+        <thead>
+            <tr align="center" >
+                <td>　</td>
+                <td>序號</td>
+                <td>製造商</td>
+                <td>類別</td>
+                <td>底價</td>
+                <td>售價</td>
+                <td>　</td>
+            </tr>
+        </thead>
+        <tbody  id="tbody">
+
+        </tbody>
+    </table>
+
+    <div id='result'></div>
+    <script type="text/javascript" src="ts2.js"> </script>
+</body>
+
+</html>
