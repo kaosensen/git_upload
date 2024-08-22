@@ -38,7 +38,7 @@ function insertNewRecord(data) {
     var newRow = table.insertRow();//生成row
     const num = getNextId();
     cell1 = newRow.insertCell(0);//生成每個cell
-    cell1.innerHTML = '<input type="radio"  onClick="onRadio(this)"  name="radio" class="radio" id="id">';
+    cell1.innerHTML = '<input type="radio"  onClick="onRadio(this)"   name="radio" class="radio" id="id">';
     cell2 = newRow.insertCell(1);
     cell2.innerHTML = num;
     cell3 = newRow.insertCell(2);
@@ -85,6 +85,7 @@ function onRadio(td) {
 }
 
 updateButton.addEventListener('click', function () {
+    const CarList = storeCarList();
 
 
     if (CarList.manufacturer === '') {
@@ -95,10 +96,10 @@ updateButton.addEventListener('click', function () {
     } else if (selectedRow) {
         const CarList = storeCarList();
         if (CarList.minprice !== '') {
-            selectedRow.cells[4].innerHTML = CarList.minprice; // 更新底價
+            selectedRow.cells[4].innerHTML = Number(CarList.minprice); // 更新底價
         }
         if (CarList.price !== '') {
-            selectedRow.cells[5].innerHTML = CarList.price; // 更新售價
+            selectedRow.cells[5].innerHTML = Number(CarList.price); // 更新售價
         }
     }
 })
