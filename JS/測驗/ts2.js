@@ -57,7 +57,6 @@ function insertNewRecord(data) {
 //新增，會呼叫新建table
 addButton.addEventListener('click', function () {
     const CarList = storeCarList();
-    debugger
     if (CarList.manufacturer === '') {
         alert('製造商不可空白');
     } else if (CarList.type === '') {
