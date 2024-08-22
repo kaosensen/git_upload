@@ -48,7 +48,7 @@ function insertNewRecord(data) {
     cell5 = newRow.insertCell(4);
     cell5.innerHTML = Number(data.minprice);
     cell6 = newRow.insertCell(5);
-    cell6.innerHTML = data.price;
+    cell6.innerHTML = Number(data.price);
     cell7 = newRow.insertCell(6);
     cell7.innerHTML = '<button onClick="onDelete(this)">刪除</button>';
 
@@ -57,14 +57,11 @@ function insertNewRecord(data) {
 //新增，會呼叫新建table
 addButton.addEventListener('click', function () {
     const CarList = storeCarList();
+
     if (CarList.manufacturer === '') {
         alert('製造商不可空白');
     } else if (CarList.type === '') {
         alert('類別不可空白');
-    }
-    else if (typeof CarList.minprice === 'string' || typeof CarList.price === 'string') {
-        alert('售價，底價應為數字');
-
     }
     else if (Number(CarList.minprice) < 0 || Number(CarList.price) < 0) {
         alert('售價，底價應為正數');
@@ -116,5 +113,10 @@ function onDelete(td) {
 }
 // 清空表格內容
 emptyButton.addEventListener('click', function () {
+    document.getElementById("manufacturer").value = "";
+    document.getElementById("type").value = "";
+    document.getElementById("minprice").value = "";
+    document.getElementById("price").value = "";
     tbody.innerHTML = '';
+    updateIndices();
 });
