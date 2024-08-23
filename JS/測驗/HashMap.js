@@ -1,29 +1,22 @@
 var HashMap = function () {
-    let obj = {};
+    let dataMap = {};
     return {
-        put: function (k, v) {
-            obj[k] = v;
+        put: function (key, value) {
+            dataMap[key] = value;
         },
         keys: function () {
-            array = [];
-            for (var ar in obj){
-                array.push(ar);
-            }
+            array = Object.keys(object);
             return array;
         },
         contains: function (k) {
-            for(let key in obj){
-                if (k===key){
-                    return true;
-                }
-            }            
-            return false;
+            return k in object;
+
         },
         get: function (k) {
-            return obj[k];
+            return dataMap[k];
         },
         clear: function () {
-            obj = {};
+            dataMap = {};
         }
     };
 };

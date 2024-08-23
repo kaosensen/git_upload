@@ -1,4 +1,4 @@
-var selectedRow = null
+let selectedRow = null;
 let id = 0;
 const addButton = document.getElementById('addbtn');
 const updateButton = document.getElementById('update');
@@ -24,7 +24,7 @@ function updateIndices() {
 
 //將輸入的資料存入object
 function storeCarList() {
-    const CarList = {};
+    let CarList = {};
     CarList.manufacturer = document.getElementById('manufacturer').value.trim();
     CarList.type = document.getElementById('type').value.trim();
     CarList.minprice = document.getElementById('minprice').value.trim();
@@ -38,7 +38,7 @@ function insertNewRecord(data) {
     var newRow = table.insertRow();//生成row
     const num = getNextId();
     cell1 = newRow.insertCell(0);//生成每個cell
-    cell1.innerHTML = '<input type="radio"  onClick="onRadio(this)"   name="radio" class="radio" id="id">';
+    cell1.innerHTML = '<input type="radio"  onClick="onRadio(this)"  name="radio" class="radio" id="id">';
     cell2 = newRow.insertCell(1);
     cell2.innerHTML = num;
     cell3 = newRow.insertCell(2);
@@ -46,9 +46,9 @@ function insertNewRecord(data) {
     cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.type;
     cell5 = newRow.insertCell(4);
-    cell5.innerHTML = Number(data.minprice);
+    cell5.innerHTML = data.minprice;
     cell6 = newRow.insertCell(5);
-    cell6.innerHTML = Number(data.price);
+    cell6.innerHTML = data.price;
     cell7 = newRow.insertCell(6);
     cell7.innerHTML = '<button onClick="onDelete(this)">刪除</button>';
     addButton.addEventListener('click', updateIndices());
@@ -58,17 +58,21 @@ function insertNewRecord(data) {
 addButton.addEventListener('click', function () {
     const CarList = storeCarList();
 
-    if (CarList.manufacturer === '') {
+    if (!CarList.manufacturer) {
         alert('製造商不可空白');
-    } else if (CarList.type === '') {
+        return;
+    }
+    if (!CarList.type ) {
         alert('類別不可空白');
+        return;
     }
-    else if (Number(CarList.minprice) < 0 || Number(CarList.price) < 0) {
+    if (CarList.minprice < 0 || CarList.price < 0) {
         alert('售價，底價應為正數');
+        return;
     }
-    else if (Number(CarList.minprice) > Number(CarList.price)) {
-
+    if (CarList.minprice > CarList.price) {
         alert('售價應大於底價');
+        return;
     }
     else {
         insertNewRecord(CarList);
@@ -85,24 +89,35 @@ function onRadio(td) {
 }
 
 updateButton.addEventListener('click', function () {
+    if (!selectedRow) {
+        alert('請選擇一個項目來更新');
+        return;
+    }
+
     const CarList = storeCarList();
 
-
-    if (CarList.manufacturer === '') {
-        const CarList = storeCarList();
+    if (!CarList.manufacturer ) {
         alert('製造商不可空白');
-    } else if (CarList.type === '') {
-        alert('類別不可空白');
-    } else if (selectedRow) {
-        const CarList = storeCarList();
-        if (CarList.minprice !== '') {
-            selectedRow.cells[4].innerHTML = Number(CarList.minprice); // 更新底價
-        }
-        if (CarList.price !== '') {
-            selectedRow.cells[5].innerHTML = Number(CarList.price); // 更新售價
-        }
+        return;
     }
-})
+    if (!CarList.type ) {
+        alert('類別不可空白');
+        return;
+    }
+    if (CarList.minprice < 0 || CarList.price < 0) {
+        alert('售價，底價應為正數');
+        return;
+    }
+    if (CarList.minprice > CarList.price) {
+        alert('售價應大於底價');
+        return;
+    }
+
+    if (selectedRow) {
+        selectedRow.cells[4].innerHTML = CarList.minprice; // 更新底價
+        selectedRow.cells[5].innerHTML = CarList.price; // 更新售價
+    }
+});
 
 function onDelete(td) {
     if (confirm('確定刪除？')) {

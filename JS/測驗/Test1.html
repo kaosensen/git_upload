@@ -7,29 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="HashMap.js"></script>
     <script>
-        const map = new HashMap();
 
         window.onload = function () {
+            const map = new HashMap();
             document.getElementById('btnput').onclick = function () {
-                const key = document.getElementById('key').value;
-                const val = document.getElementById('value').value;
-
+                const key = document.getElementById('key').value.trim();
+                const val = document.getElementById('value').value.trim();
                 if (!key) {
                     alert('請填寫KEY值');
                     return;
-                } else if (map.contains(key)) {
+                }  
+                if (map.contains(key)) {
                     alert('KEY值不得重複');
                     return;
-                    key.value = '';
-                    val.value = '';
                 }
                 map.put(key, val);
                 const keys = map.keys();
                 let result = '';
                 for (let i = 0; i < keys.length; i++) {
-                    result += (keys[i] + '：');
-                    result += (map.get(keys[i]));
-                    result += '<br>';
+                    result += (keys[i] + '：' + map.get(keys[i]) + '<br>');
                 }
                 document.getElementById('result').innerHTML = result;
             }
@@ -55,7 +51,7 @@
         　<button type='button' id='btnput'>put</button>　<button type='button' id='btnclear'>clear</button><br><br>
         【RESURT】<br><br>
         ———————————————————<br><br>
-        <div var id='result'></div>
+        <div  id='result'></div>
     </form>
 </body>
 
